@@ -21,7 +21,7 @@ export function CreateQuestion() {
 		console.log(question);
 		
 		try {
-			const response = await axios.post(`http://localhost:3000/api/questions`, { ...question });
+			const response = await axios.post(`https://striver-sheet.onrender.com/api/questions`, { ...question });
 			
 			if (response.status === 201) {
 				setQuestion({
