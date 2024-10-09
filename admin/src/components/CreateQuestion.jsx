@@ -18,9 +18,7 @@ export function CreateQuestion() {
 		setQuestion({ ...question, [e.target.name]: e.target.value });
 	};
 	
-	const handleOnSubmit = async (e) => {
-		e.preventDefault();
-		
+	const handleOnSubmit = async () => {
 		try {
 			const response = await axios.post(`https://striver-sheet.onrender.com/api/questions`, { ...question });
 			
