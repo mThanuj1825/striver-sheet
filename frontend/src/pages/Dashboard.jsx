@@ -15,7 +15,7 @@ export function Dashboard() {
 	useEffect(() => {
 		const fetchCompletedQuestions = async () => {
 			try {
-				const response = await axios.get(`https://striver-sheet.onrender.com/api/users/${ user?.username }`);
+				const response = await axios.get(`http://localhost:3000/api/users/${ user?.username }`);
 				setCompletedQuestions(response.data.completedQuestions);
 			} catch (err) {
 				console.error("Failed to load completed questions", err);

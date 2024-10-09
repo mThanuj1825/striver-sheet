@@ -1,3 +1,4 @@
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.jsx";
 import { Button } from "@/components/ui/button.jsx";
 import { Input } from "@/components/ui/input.jsx";
 import { useState } from "react";
@@ -9,12 +10,17 @@ export function Signup() {
 		email: "",
 		password: "",
 	});
+	const [error, setError] = useState(null);
+	const [created, setCreated] = useState(null);
 	
 	async function handleSubmit(e) {
 		e.preventDefault();
-		let response = await createuser(user);
-		
-		console.log(response);
+		try {
+			await createuser(user);
+			setCreated("Created");
+		} catch (err) {
+			setError("Server error");
+		}
 	}
 	
 	function handleChange(e) {
@@ -23,6 +29,17 @@ export function Signup() {
 	
 	return (
 		<div className={ "flex flex-col items-center" }>
+			{ error && (
+				<Alert className="my-4">
+					<AlertTitle>Account creation failed.</AlertTitle>
+					<AlertDescription>{ error }</AlertDescription>
+				</Alert>
+			) }
+			{ created && (
+				<Alert className="my-4">
+					<AlertTitle>Account created. Please Log In.</AlertTitle>
+				</Alert>
+			) }
 			<form onSubmit={ handleSubmit } className={ "space-y-4 flex flex-col w-full" }>
 				<Input placeholder={ "Username" } type={ "text" } name={ "username" } id={ "username" }
 				       onChange={ handleChange } required={ true } maxLength={ 20 } />

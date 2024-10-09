@@ -56,8 +56,8 @@ const getAllQuestions = async (req, res) => {
 
 const createQuestion = async (req, res) => {
 	try {
-		const { title, description, step, lecture } = req.body;
-		const newQuestion = new Question({ title, description, step, lecture });
+		const { title, description, step, lecture, number } = req.body;
+		const newQuestion = new Question({ title, description, step, lecture, number });
 		await newQuestion.save();
 		res.status(201).json(newQuestion);
 	} catch (err) {

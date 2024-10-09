@@ -12,7 +12,7 @@ export function Students() {
 	useEffect(() => {
 		const fetchUsers = async () => {
 			try {
-				const response = await axios.get("https://striver-sheet.onrender.com/api/users");
+				const response = await axios.get("http://localhost:3000/api/users");
 				const sortedUsers = response.data.sort((a, b) => b.completedQuestions.length - a.completedQuestions.length);
 				setUsers(sortedUsers);
 			} catch (error) {

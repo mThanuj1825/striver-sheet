@@ -14,7 +14,7 @@ export function Questions() {
 	useEffect(() => {
 		const fetchAllQuestions = async () => {
 			try {
-				const response = await axios.get(`https://striver-sheet.onrender.com/api/questions/`);
+				const response = await axios.get(`http://localhost:3000/api/questions/`);
 				
 				if (response.data.message === "No questions found") {
 					console.log("No questions left");

@@ -11,34 +11,34 @@ export function Login() {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
 	const { login } = useContext(AuthContext);
-
+	
 	const navigate = useNavigate();
-
+	
 	const handleLogin = async () => {
 		try {
-			const response = await axios.post(`https://striver-sheet.onrender.com/api/auth/login`, { username, password });
+			const response = await axios.post(`http://localhost:3000/api/auth/login`, { username, password });
 			await login(response.data);
 			console.log("here");
-
+			
 			navigate("/dashboard");
 		} catch (err) {
 			setError("Invalid username or password. Please try again.");
 		}
 	};
-
+	
 	return (
-		<div className={"flex flex-col items-center justify-center gap-y-3"}>
-			{error && (
+		<div className={ "flex flex-col items-center justify-center gap-y-3" }>
+			{ error && (
 				<Alert className="my-4">
 					<AlertTitle>Authentication Failed</AlertTitle>
-					<AlertDescription>{error}</AlertDescription>
+					<AlertDescription>{ error }</AlertDescription>
 				</Alert>
-			)}
-			<Input placeholder={"Username"} type={"text"} value={username}
-				onChange={(e) => setUsername(e.target.value)} />
-			<Input placeholder={"Password"} type={"password"} value={password}
-				onChange={(e) => setPassword(e.target.value)} />
-			<Button onClick={handleLogin} className={"min-w-[41px] w-1/4"}>Login</Button>
+			) }
+			<Input placeholder={ "Username" } type={ "text" } value={ username }
+			       onChange={ (e) => setUsername(e.target.value) } />
+			<Input placeholder={ "Password" } type={ "password" } value={ password }
+			       onChange={ (e) => setPassword(e.target.value) } />
+			<Button onClick={ handleLogin } className={ "min-w-[41px] w-1/4" }>Login</Button>
 		</div>
 	);
 }

@@ -14,7 +14,7 @@ export function Questions() {
 	useEffect(() => {
 		const fetchAllQuestions = async () => {
 			try {
-				const response = await axios.get(`https://striver-sheet.onrender.com/api/questions/`);
+				const response = await axios.get(`http://localhost:3000/api/questions/`);
 				if (response.data.message === "No questions found") {
 					return;
 				}
@@ -44,7 +44,7 @@ export function Questions() {
 	
 	const handleDeleteQuestion = async (id) => {
 		try {
-			await axios.delete(`https://striver-sheet.onrender.com/api/questions/${ id }`);
+			await axios.delete(`http://localhost:3000/api/questions/${ id }`);
 			
 			const updatedQuestions = { ...questions };
 			for (const step in updatedQuestions) {

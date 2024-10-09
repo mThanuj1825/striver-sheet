@@ -9,6 +9,7 @@ export function CreateQuestion() {
 		description: "",
 		step: 0,
 		lecture: 0,
+		number: 0,
 	});
 	
 	const handleOnChange = (e) => {
@@ -21,7 +22,7 @@ export function CreateQuestion() {
 		console.log(question);
 		
 		try {
-			const response = await axios.post(`https://striver-sheet.onrender.com/api/questions`, { ...question });
+			const response = await axios.post(`http://localhost:3000/api/questions`, { ...question });
 			
 			if (response.status === 201) {
 				setQuestion({
@@ -29,6 +30,7 @@ export function CreateQuestion() {
 					description: "",
 					step: 0,
 					lecture: 0,
+					number: 0,
 				});
 			}
 		} catch (error) {
@@ -51,6 +53,9 @@ export function CreateQuestion() {
 				       onChange={ handleOnChange } />
 				<input type={ "number" } name={ "lecture" } id={ "lecture" } value={ question.lecture }
 				       placeholder={ "Lecture" }
+				       onChange={ handleOnChange } />
+				<input type={ "number" } name={ "number" } id={ "number" } value={ question.number }
+				       placeholder={ "Number" }
 				       onChange={ handleOnChange } />
 				<button type={ "submit" }>Create Question</button>
 			</form>

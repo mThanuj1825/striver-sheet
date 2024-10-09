@@ -13,7 +13,7 @@ export function Login() {
 	
 	const handleLogin = async () => {
 		try {
-			const response = await axios.post(`https://striver-sheet.onrender.com/api/auth/admin/login`, { username, password });
+			const response = await axios.post(`http://localhost:3000/api/auth/admin/login`, { username, password });
 			await login(response.data);
 			
 			navigate("/dashboard");

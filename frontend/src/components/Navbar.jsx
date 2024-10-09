@@ -18,7 +18,7 @@ export function Navbar() {
 				pageData.map((data, index) => {
 					return (
 						<Button key={ index } className={ "border border-accent" }>
-							<Link to={ data.path } key={ index } className={ "text-lg md:text-2xl" }>{ data.name }</Link>
+							<Link to={ data.path } key={ index } className={ "text-base sm:text-lg md:text-2xl" }>{ data.name }</Link>
 						</Button>
 					);
 				})
