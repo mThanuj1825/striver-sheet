@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input.jsx";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { number } from "zod";
 
 export function CreateQuestion() {
 	const navigate = useNavigate();
@@ -16,7 +15,12 @@ export function CreateQuestion() {
 	});
 	
 	const handleOnChange = (e) => {
-		setQuestion({ ...question, [e.target.name]: e.target.value });
+		const { name, value } = e.target;
+		
+		setQuestion((prevQuestion) => ({
+			...prevQuestion,
+			[name]: name === "step" || name === "lecture" || name === "number" ? parseInt(value, 10) || 0 : value,
+		}));
 	};
 	
 	const handleOnSubmit = async () => {
@@ -30,7 +34,7 @@ export function CreateQuestion() {
 					description: "",
 					step: question.step,
 					lecture: question.lecture,
-					number: number(number(question.number) + 1),
+					number: question.number + 1,
 				});
 			}
 		} catch (error) {
