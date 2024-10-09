@@ -44,7 +44,7 @@ export function Questions() {
 	
 	const handleDeleteQuestion = async (id) => {
 		try {
-			await axios.delete(`http://localhost:3000/api/questions/${ id }`);
+			await axios.delete(`https://striver-sheet.onrender.com/api/questions/${ id }`);
 			
 			const updatedQuestions = { ...questions };
 			for (const step in updatedQuestions) {
