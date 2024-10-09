@@ -27,9 +27,9 @@ export function CreateQuestion() {
 				setQuestion({
 					title: "",
 					description: "",
-					step: 0,
-					lecture: 0,
-					number: 0,
+					step: question.step,
+					lecture: question.lecture,
+					number: question.number + 1,
 				});
 			}
 		} catch (error) {
