@@ -14,7 +14,7 @@ export function Questions() {
 	useEffect(() => {
 		const fetchAllQuestions = async () => {
 			try {
-				const response = await axios.get(`http://localhost:3000/api/questions/`);
+				const response = await axios.get(`https://striver-sheet.onrender.com/api/questions/`);
 				
 				if (response.data.message === "No questions found") {
 					console.log("No questions left");
@@ -43,7 +43,7 @@ export function Questions() {
 	
 	const fetchUserData = async () => {
 		try {
-			const response = await axios.get(`http://localhost:3000/api/users/${ user.username }`);
+			const response = await axios.get(`https://striver-sheet.onrender.com/api/users/${ user.username }`);
 			setUser(response.data);
 		} catch (err) {
 			console.error("Failed to fetch user data", err);

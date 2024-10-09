@@ -16,7 +16,7 @@ export function Login() {
 	
 	const handleLogin = async () => {
 		try {
-			const response = await axios.post(`http://localhost:3000/api/auth/login`, { username, password });
+			const response = await axios.post(`https://striver-sheet.onrender.com/api/auth/login`, { username, password });
 			await login(response.data);
 			console.log("here");
 			
