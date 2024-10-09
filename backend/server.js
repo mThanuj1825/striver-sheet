@@ -9,11 +9,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
-app.use(cors({
-	origin: "https://vignan-striver-sheet.netlify.app",
-	methods: ["GET", "POST", "PUT", "DELETE"],
-	credentials: true,
-}));
+app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI)
 	.then(() => console.log("MongoDB Connected"))

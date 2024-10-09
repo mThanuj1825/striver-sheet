@@ -71,13 +71,13 @@ export function Questions() {
 					Object.keys(questions).length !== 0 &&
 					Object.keys(questions).map((step) => (
 						Object.keys(questions[step]).length !== 0 &&
-						<div key={ step }>
+						<div key={ uuid4() }>
 							{
 								Object.keys(questions[step]).map((lecture) => (
 									questions[step][lecture].length !== 0 &&
-									<div key={ step }>
+									<div key={ uuid4() }>
 										<h2>Step { step }</h2>
-										<div key={ lecture }>
+										<div key={ uuid4() }>
 											<h4>Lecture { lecture }</h4>
 											<ul>
 												{

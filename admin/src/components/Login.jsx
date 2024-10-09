@@ -14,6 +14,7 @@ export function Login() {
 	const handleLogin = async () => {
 		try {
 			const response = await axios.post(`http://localhost:3000/api/auth/admin/login`, { username, password });
+			console.log(response);
 			await login(response.data);
 			
 			navigate("/dashboard");
