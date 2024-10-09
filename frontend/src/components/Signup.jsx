@@ -30,7 +30,7 @@ export function Signup() {
 				       onChange={ handleChange } required={ true } maxLength={ 50 } />
 				<Input placeholder={ "Password" } type={ "password" } name={ "password" } id={ "password" }
 				       onChange={ handleChange } required={ true } maxLength={ 20 } />
-				<Button className={ "mx-auto w-1/2" } type={ "submit" }>Create Account</Button>
+				<Button className={ "min-w-[104px] mx-auto w-2/3" } type={ "submit" }>Create Account</Button>
 			</form>
 		</div>
 	);

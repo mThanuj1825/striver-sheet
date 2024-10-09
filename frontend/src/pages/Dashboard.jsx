@@ -62,7 +62,7 @@ export function Dashboard() {
 								className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">Step { step }</h1>
 							{
 								Object.keys(questions[step]).map((lecture) => (
-									<div key={ uuidv4() } className={ "flex flex-col" }>
+									<div key={ uuidv4() } className={ "flex flex-col mt-2" }>
 										<h2
 											className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">Lecture { lecture }</h2>
 										<ul>

@@ -103,7 +103,7 @@ export function Questions() {
 							{
 								Object.keys(questions[step]).map((lecture) => (
 									questions[step][lecture].length !== 0 &&
-									<div key={ uuid4() } className={ "flex flex-col" }>
+									<div key={ uuid4() } className={ "flex flex-col mt-2" }>
 										<h2
 											className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">Lecture { lecture }</h2>
 										<ul>

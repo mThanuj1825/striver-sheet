@@ -12,14 +12,14 @@ export function Landing() {
 				showLogin ?
 					<div className={ "flex flex-col w-1/2" }>
 						<Login />
-						<Button className={ "w-5/12 mx-auto my-4" } onClick={ () => setShowLogin(false) }>Create new
-						                                                                                  Account</Button>
+						<Button className={ "min-w-[132px] w-3/4 mx-auto my-4" } onClick={ () => setShowLogin(false) }>Create new
+						                                                                                               Account</Button>
 					</div>
 					:
 					<div className={ "flex flex-col w-1/2" }>
 						<Signup />
-						<Button className={ "w-3/5 mx-auto my-4" } onClick={ () => setShowLogin(true) }>Login existing
-						                                                                                account</Button>
+						<Button className={ "min-w-[150px] w-5/6 mx-auto my-4" } onClick={ () => setShowLogin(true) }>Login existing
+						                                                                                              account</Button>
 					</div>
 			}
 		</div>

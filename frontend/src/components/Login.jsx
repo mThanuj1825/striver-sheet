@@ -36,7 +36,7 @@ export function Login() {
 			       onChange={ (e) => setUsername(e.target.value) } />
 			<Input placeholder={ "Password" } type={ "password" } value={ password }
 			       onChange={ (e) => setPassword(e.target.value) } />
-			<Button onClick={ handleLogin } className={ "w-1/4" }>Login</Button>
+			<Button onClick={ handleLogin } className={ "min-w-[41px] w-1/4" }>Login</Button>
 		</div>
 	);
 }
