@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:3000/api";
+const URL = "https://striver-sheet.onrender.com/api";
 
 // 1. Create User
 export async function createuser(user) {

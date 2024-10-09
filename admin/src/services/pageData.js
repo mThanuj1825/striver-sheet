@@ -7,8 +7,4 @@ export const pageData = [
 		name: "Students",
 		path: "/students",
 	},
-	{
-		name: "Dashboard",
-		path: "/dashboard",
-	},
 ];

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button.jsx";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,7 +15,7 @@ export function Questions() {
 	useEffect(() => {
 		const fetchAllQuestions = async () => {
 			try {
-				const response = await axios.get(`http://localhost:3000/api/questions/`);
+				const response = await axios.get(`https://striver-sheet.onrender.com/api/questions/`);
 				if (response.data.message === "No questions found") {
 					return;
 				}
@@ -44,7 +45,7 @@ export function Questions() {
 	
 	const handleDeleteQuestion = async (id) => {
 		try {
-			await axios.delete(`http://localhost:3000/api/questions/${ id }`);
+			await axios.delete(`https://striver-sheet.onrender.com/api/questions/${ id }`);
 			
 			const updatedQuestions = { ...questions };
 			for (const step in updatedQuestions) {
@@ -62,10 +63,12 @@ export function Questions() {
 	};
 	
 	return (
-		<div>
-			<button>
-				<Link to={ "/create-question" }>Create a new Question</Link>
-			</button>
+		<div className={ "mt-24" }>
+			<div className={ "flex flex-row items-center justify-center mb-4" }>
+				<Button>
+					<Link to={ "/create-question" }>Create a new Question</Link>
+				</Button>
+			</div>
 			<ul>
 				{
 					Object.keys(questions).length !== 0 &&
@@ -76,9 +79,11 @@ export function Questions() {
 								Object.keys(questions[step]).map((lecture) => (
 									questions[step][lecture].length !== 0 &&
 									<div key={ uuid4() }>
-										<h2>Step { step }</h2>
+										<h1
+											className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">Step { step }</h1>
 										<div key={ uuid4() }>
-											<h4>Lecture { lecture }</h4>
+											<h2
+												className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">Lecture { lecture }</h2>
 											<ul>
 												{
 													questions[step][lecture].map((question) => {
