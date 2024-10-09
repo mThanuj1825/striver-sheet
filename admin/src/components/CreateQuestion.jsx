@@ -21,8 +21,6 @@ export function CreateQuestion() {
 	const handleOnSubmit = async (e) => {
 		e.preventDefault();
 		
-		console.log(question);
-		
 		try {
 			const response = await axios.post(`https://striver-sheet.onrender.com/api/questions`, { ...question });
 			
@@ -59,7 +57,7 @@ export function CreateQuestion() {
 				<Input type={ "number" } name={ "number" } id={ "number" } value={ question.number }
 				       placeholder={ "Number" }
 				       onChange={ handleOnChange } />
-				<Button type={ "submit" } onSubmit={ handleOnSubmit }>Create Question</Button>
+				<Button onSubmit={ handleOnSubmit }>Create Question</Button>
 				<Button onClick={ handleGoBack }>Back
 				</Button>
 			</div>
