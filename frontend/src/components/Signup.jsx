@@ -19,13 +19,27 @@ export function Signup() {
 			await createuser(user);
 			setCreated("Created");
 		} catch (err) {
-			setError("Server error");
+			setError("Username / Email already used for another account");
 		}
 	}
 	
 	function handleChange(e) {
 		setUser({ ...user, [e.target.name]: e.target.value });
 	}
+	
+	const usernameInput = document.getElementById("username");
+	
+	usernameInput.addEventListener("input", function () {
+		this.setCustomValidity("");
+		
+		if (!this.validity.valid) {
+			this.setCustomValidity("Please enter a valid roll number: XX891Axxxx or XX891axxxx");
+		}
+	});
+	
+	usernameInput.addEventListener("invalid", function () {
+		this.setCustomValidity("Please enter a valid roll number: XX891Axxxx or XX891axxxx");
+	});
 	
 	return (
 		<div className={ "flex flex-col items-center" }>
@@ -42,7 +56,7 @@ export function Signup() {
 			) }
 			<form onSubmit={ handleSubmit } className={ "space-y-4 flex flex-col w-full" }>
 				<Input placeholder={ "Username" } type={ "text" } name={ "username" } id={ "username" }
-				       onChange={ handleChange } required={ true } maxLength={ 20 } />
+				       onChange={ handleChange } required={ true } maxLength={ 20 } pattern={ "/^\\d{2}891[aA]\\d{4}$/" } />
 				<Input placeholder={ "Email" } type={ "email" } name={ "email" } id={ "email" }
 				       onChange={ handleChange } required={ true } maxLength={ 50 } />
 				<Input placeholder={ "Password" } type={ "password" } name={ "password" } id={ "password" }
