@@ -10,6 +10,24 @@ export function Questions() {
 	const [questions, setQuestions] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const { user, setUser } = useContext(AuthContext);
+	const [openSteps, setOpenSteps] = useState({});
+	const [openLectures, setOpenLectures] = useState({});
+	
+	// Toggle Step
+	const toggleStep = (step) => {
+		setOpenSteps((prev) => ({
+			...prev,
+			[step]: !prev[step],
+		}));
+	};
+	
+	// Toggle Lecture
+	const toggleLecture = (step, lecture) => {
+		setOpenLectures((prev) => ({
+			...prev,
+			[`${ step }-${ lecture }`]: !prev[`${ step }-${ lecture }`],
+		}));
+	};
 	
 	useEffect(() => {
 		const fetchAllQuestions = async () => {
@@ -93,34 +111,44 @@ export function Questions() {
 	
 	return (
 		<ul className={ "mt-4" }>
-			{
-				Object.keys(questions).length !== 0 &&
+			{ Object.keys(questions).length !== 0 &&
 				Object.keys(questions).map((step) => (
-						Object.keys(questions[step]).length !== 0 &&
+					Object.keys(questions[step]).length !== 0 && (
 						<div key={ uuid4() }>
-							<h1
-								className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">Step { step }</h1>
-							{
+							<div className="cursor-pointer" onClick={ () => toggleStep(step) }>
+								<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center mb-4">
+									Step { step } { openSteps[step] ? <i className="fa-regular fa-circle-down"></i> :
+									<i className="fa-regular fa-circle-right"></i> }
+								</h1>
+							</div>
+							{ openSteps[step] &&
 								Object.keys(questions[step]).map((lecture) => (
-									questions[step][lecture].length !== 0 &&
-									<div key={ uuid4() } className={ "flex flex-col mt-2" }>
-										<h2
-											className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">Lecture { lecture }</h2>
-										<ul>
-											{
-												questions[step][lecture].map((question) => {
-													return <Question key={ uuid4() } question={ question }
-													                 handleMarkCompleted={ handleMarkCompleted } dashboard={ false } />;
-												})
-											}
-										</ul>
-									</div>
-								))
-							}
+									questions[step][lecture].length !== 0 && (
+										<div key={ uuid4() }>
+											<div className="cursor-pointer" onClick={ () => toggleLecture(step, lecture) }>
+												<h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+													Lecture { lecture } { openLectures[`${ step }-${ lecture }`] ?
+													<i className="fa-regular fa-circle-down"></i> :
+													<i className="fa-regular fa-circle-right"></i> }
+												</h2>
+											</div>
+											{ openLectures[`${ step }-${ lecture }`] && (
+												<ul>
+													{
+														questions[step][lecture].map((question) => {
+															return <Question key={ uuid4() } question={ question }
+															                 handleMarkCompleted={ handleMarkCompleted } dashboard={ false } />;
+														})
+													}
+												</ul>
+											) }
+										</div>
+									)
+								)) }
 						</div>
-					),
-				)
-			}
+					)
+				)) }
 		</ul>
 	);
 }
+
